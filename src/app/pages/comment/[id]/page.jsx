@@ -16,7 +16,6 @@ const Comment = () => {
 	let [inpAddComent, setInpAddComent] = useState('')
 
 	async function addUserComent() {
-		if (!inpAddComent.trim()) return
 		const newComments = [...(subject.comment || []), inpAddComent]
 
 		await addComment({ id: subject.id, coment: newComments })
