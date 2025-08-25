@@ -1,28 +1,28 @@
-## Онлайн Quiz
+# Онлайн Quiz
 Это веб-приложение на Next.js + React с использованием Redux Toolkit (RTK Query), позволяющее:
 Просматривать предметы и вопросы.
 Читать комментарии к каждому предмету.
 Добавлять новые комментарии в реальном времени.
 
-## Краткое Описание:
+# Краткое Описание:
 
-# State Maneger 
+## State Maneger 
 RTK/RTK Query
 
-# UI LIbrary 
+## UI LIbrary 
 Ant Design
 
-# Server 
+## Server 
 db.json
 
-# Language/library 
+## Language/library 
 React/Next.js
 
-# Style 
+## Style 
 Tailwindcss
 
-# Archetecture 
+## Archetecture 
 FSD
 
-# Router 
+## Router 
 Next router
