@@ -1,13 +1,13 @@
-import Link from 'next/link'
 import React from 'react'
+import Link from 'next/link'
+import logo from "../../shared/Без названия (2).jpg"
+import Image from 'next/image'
 
 const Header = () => {
 	return (
 		<header className="bg-white shadow-md sticky top-0 z-50">
 			<div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-				<h1 className="text-2xl font-bold text-gray-900">
-					Quiz
-				</h1>
+				<Image src={logo} alt='logo' height={30} width={100}/>
 				<nav>
 					<ul className="flex space-x-8">
 						<li>
