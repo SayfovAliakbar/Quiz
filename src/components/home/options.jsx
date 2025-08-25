@@ -1,7 +1,7 @@
 'use client'
 import { useGetOptionsQuery } from '@/store/services/userApi'
 import Link from 'next/link'
-import { MessageCircle } from 'lucide-react' // новая иконка 💬
+import { MessageCircle } from 'lucide-react'
 import React from 'react'
 
 const Options = () => {
