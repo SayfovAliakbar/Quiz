@@ -26,3 +26,6 @@ FSD
 
 ## Router 
 Next router
+
+## Icon
+Lucide React
