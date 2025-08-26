@@ -13,25 +13,25 @@ const Header = () => {
 						<li>
 							<Link
 								href="/"
-								className="text-gray-700 hover:text-yellow-600 transition font-medium"
+								className="text-gray-800 hover:text-indigo-700 transition font-medium"
 							>
-								Home
+								<b>Home</b>
 							</Link>
 						</li>
 						<li>
 							<Link
 								href="/pages/about"
-								className="text-gray-700 hover:text-yellow-600 transition font-medium"
+								className="text-gray-800 hover:text-indigo-700 transition font-medium"
 							>
-								About
+								<b>About</b>
 							</Link>
 						</li>
 						<li>
 							<Link
 								href="/pages/contact"
-								className="text-gray-700 hover:text-yellow-600 transition font-medium"
+								className="text-gray-800 hover:text-indigo-700 transition font-medium"
 							>
-								Contact
+								<b>Contact</b>
 							</Link>
 						</li>
 					</ul>
