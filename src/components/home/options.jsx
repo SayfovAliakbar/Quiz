@@ -38,7 +38,7 @@ const Options = () => {
             className='bg-white shadow-lg hover:shadow-2xl rounded-2xl p-6 text-center transition-all hover:scale-[1.03] border border-gray-100'
           >
             <div className='flex flex-col items-center gap-4'>
-              <span className='text-5xl'>📘</span>
+              <span className='text-5xl'>📖</span>
               <p className='text-xl font-semibold text-gray-800'>{el.name}</p>
 
               <div className='flex justify-center gap-4 mt-4'>
