@@ -17,7 +17,6 @@ const Header = () => {
     }`}>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3'>
         <div className='flex items-center justify-between'>
-          {/* Логотип */}
           <Link href='/' className='flex items-center space-x-2 group'>
             <Image 
               src={logo} 
@@ -28,7 +27,6 @@ const Header = () => {
             />
           </Link>
 
-          {/* Навигация */}
           <nav className='hidden md:flex items-center space-x-6'>
             <Link
               href='/'
@@ -66,7 +64,6 @@ const Header = () => {
               <span>Contact</span>
             </Link>
 
-            {/* Кнопка переключения темы */}
             <button
               onClick={toggleTheme}
               className={`p-2 rounded-lg transition-all duration-300 hover:scale-110 ${
@@ -88,7 +85,6 @@ const Header = () => {
             </button>
           </nav>
 
-          {/* Мобильное меню */}
           <div className='flex md:hidden items-center space-x-4'>
             <button
               onClick={toggleTheme}
