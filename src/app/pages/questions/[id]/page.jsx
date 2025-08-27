@@ -2,6 +2,8 @@
 import { useGetOptionsQuery } from '@/store/services/userApi'
 import { useParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
+import { Moon, Sun } from 'lucide-react'
+import { useTheme } from '@/components/theme'
 
 const Info = () => {
   const { id } = useParams()
@@ -9,7 +11,8 @@ const Info = () => {
   const [selected, setSelected] = useState({})
   const [showResult, setShowResult] = useState(false)
   const [subject, setSubject] = useState(null)
-  const [activeLevel, setActiveLevel] = useState('levelOne') // Текущий активный уровень
+  const [activeLevel, setActiveLevel] = useState('levelOne')
+  const { darkMode } = useTheme()
 
   useEffect(() => {
     if (subjects) {
@@ -18,12 +21,26 @@ const Info = () => {
     }
   }, [id, subjects])
 
-  if (isLoading) return <p>Загрузка...</p>
-  if (isError) return <p>Ошибка при загрузке</p>
-  if (!subject) return <p>Предмет не найден</p>
+  if (isLoading) 
+    return (
+      <div className={`min-h-screen flex items-center justify-center ${darkMode ? "bg-gray-900" : "bg-gradient-to-br from-blue-50 via-white to-violet-50"}`}>
+        <p className={`text-center ${darkMode ? "text-gray-300" : "text-gray-500"} mt-4`}>Загрузка...</p>
+      </div>
+    )
+  if (isError) 
+    return (
+      <div className={`min-h-screen flex items-center justify-center ${darkMode ? "bg-gray-900" : "bg-gradient-to-br from-blue-50 via-white to-violet-50"}`}>
+        <p className={`text-center ${darkMode ? "text-red-300" : "text-red-500"} mt-4`}>Ошибка при загрузке</p>
+      </div>
+    )
+  if (!subject) 
+    return (
+      <div className={`min-h-screen flex items-center justify-center ${darkMode ? "bg-gray-900" : "bg-gradient-to-br from-blue-50 via-white to-violet-50"}`}>
+        <p className={`text-center ${darkMode ? "text-gray-300" : "text-gray-500"} mt-4`}>Предмет не найден</p>
+      </div>
+    )
 
-  // Получаем уровни из данных
-  const levels = subject.levels[0] // levels - это массив с одним объектом
+  const levels = subject.levels[0]
 
   const handleSelect = (level, qId, option) => {
     setSelected((prev) => ({ ...prev, [`${level}-${qId}`]: option }))
@@ -34,18 +51,24 @@ const Info = () => {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 flex flex-col items-center p-6">
-      <h1 className="text-2xl font-bold mb-6">{subject.name}</h1>
+    <main className={`min-h-screen p-6 ${darkMode ? "bg-gray-900 text-gray-100" : "bg-gradient-to-br from-blue-50 via-white to-violet-50"}`}>
+      <h1 className={`text-4xl font-bold text-center ${darkMode ? "text-blue-400" : "text-blue-700"}`}>
+        {subject.name}
+      </h1>
 
-      <div className="flex gap-4 mb-6">
+      <div className="flex gap-4 my-6 justify-center">
         {['levelOne', 'levelTwo', 'levelThree'].map((level) => (
           <button
             key={level}
             onClick={() => setActiveLevel(level)}
             className={`px-4 py-2 rounded-lg ${
               activeLevel === level
-                ? 'bg-indigo-600 text-white'
-                : 'bg-gray-200 text-gray-700'
+                ? darkMode 
+                  ? 'bg-indigo-600 text-white' 
+                  : 'bg-indigo-600 text-white'
+                : darkMode 
+                  ? 'bg-gray-700 text-gray-300' 
+                  : 'bg-gray-200 text-gray-700'
             }`}
           >
             {level === 'levelOne' && 'Уровень 1'}
@@ -55,10 +78,13 @@ const Info = () => {
         ))}
       </div>
 
-      <div className="w-full max-w-2xl space-y-6">
+      <div className="w-full max-w-2xl mx-auto space-y-6">
         {getCurrentLevelQuestions().map((q, idx) => (
-          <div key={q.id} className="bg-white p-4 rounded-xl shadow-md">
-            <p className="font-semibold mb-3">
+          <div 
+            key={q.id} 
+            className={`p-4 rounded-xl shadow-md ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"}`}
+          >
+            <p className={`font-semibold mb-3 ${darkMode ? "text-gray-200" : "text-gray-800"}`}>
               {idx + 1}. {q.question}
             </p>
             <div className="flex flex-col gap-2">
@@ -72,12 +98,31 @@ const Info = () => {
                   <button
                     key={opt}
                     onClick={() => handleSelect(activeLevel, q.id, opt)}
+                    disabled={showResult}
                     className={`
-                      text-left px-4 py-2 rounded-lg border
-                      ${isSelected ? 'border-indigo-600 bg-indigo-100' : 'border-gray-300'}
-                      ${isCorrect ? 'bg-green-200 border-green-600' : ''}
-                      ${isWrong ? 'bg-red-200 border-red-600' : ''}
-                      transition
+                      text-left px-4 py-2 rounded-lg border transition
+                      ${isSelected 
+                        ? darkMode 
+                          ? 'border-indigo-500 bg-indigo-900 text-white' 
+                          : 'border-indigo-600 bg-indigo-100 text-indigo-800'
+                        : darkMode 
+                          ? 'border-gray-600 bg-gray-700 text-gray-300' 
+                          : 'border-gray-300 bg-white text-gray-800'
+                      }
+                      ${isCorrect 
+                        ? darkMode 
+                          ? 'bg-green-900 border-green-500 text-white' 
+                          : 'bg-green-100 border-green-600 text-green-800'
+                        : ''
+                      }
+                      ${isWrong 
+                        ? darkMode 
+                          ? 'bg-red-900 border-red-500 text-white' 
+                          : 'bg-red-100 border-red-600 text-red-800'
+                        : ''
+                      }
+                      ${!showResult && darkMode && !isSelected ? 'hover:bg-gray-600' : ''}
+                      ${!showResult && !darkMode && !isSelected ? 'hover:bg-gray-100' : ''}
                     `}
                   >
                     {opt}
@@ -91,12 +136,16 @@ const Info = () => {
         {!showResult ? (
           <button
             onClick={checkResult}
-            className="mt-4 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
+            className={`mt-4 px-6 py-3 rounded-lg transition ${
+              darkMode 
+                ? 'bg-indigo-600 hover:bg-indigo-700 text-white' 
+                : 'bg-indigo-600 hover:bg-indigo-700 text-white'
+            }`}
           >
             Проверить результат
           </button>
         ) : (
-          <p className="mt-4 text-xl font-bold">
+          <p className={`mt-4 text-xl font-bold text-center ${darkMode ? "text-blue-400" : "text-blue-700"}`}>
             Вы правильно ответили на {' '}
             {getCurrentLevelQuestions().filter((q) => 
               selected[`${activeLevel}-${q.id}`] === q.answer
@@ -105,6 +154,9 @@ const Info = () => {
           </p>
         )}
       </div>
+
+      <div className={`absolute top-20 left-10 w-32 h-32 rounded-full opacity-20 blur-3xl animate-pulse ${darkMode ? "bg-blue-900" : "bg-blue-200"}`}></div>
+      <div className={`absolute bottom-20 right-10 w-40 h-40 rounded-full opacity-20 blur-3xl animate-pulse delay-1000 ${darkMode ? "bg-violet-900" : "bg-violet-200"}`}></div>
     </main>
   )
 }

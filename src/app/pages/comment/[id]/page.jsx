@@ -7,6 +7,8 @@ import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import userImg from '../../../../shared/Без названия (1).png'
+import { useTheme } from '@/components/theme'
+import { Moon, Sun } from 'lucide-react'
 
 const Comment = () => {
 	const { id } = useParams()
@@ -14,8 +16,11 @@ const Comment = () => {
 	const [subject, setSubject] = useState(null)
 	const [addComment] = useAddCommentMutation()
 	let [inpAddComent, setInpAddComent] = useState('')
+	const { darkMode } = useTheme()
 
 	async function addUserComent() {
+		if (!inpAddComent.trim()) return
+		
 		const newComments = [...(subject.comment || []), inpAddComent]
 
 		await addComment({ id: subject.id, coment: newComments })
@@ -33,17 +38,17 @@ const Comment = () => {
 
 	if (isLoading)
 		return (
-			<p className='text-center text-gray-500 mt-4'>Загрузка комментариев...</p>
+			<div className={`min-h-screen flex items-center justify-center ${darkMode ? "bg-gray-900" : "bg-gradient-to-br from-blue-50 via-white to-violet-50"}`}>
+				<p className={`text-center ${darkMode ? "text-gray-300" : "text-gray-500"} mt-4`}>Загрузка комментариев...</p>
+			</div>
 		)
 	if (isError)
 		return (
-			<p className='text-center text-red-500 mt-4'>
-				Ошибка при загрузке комментариев
-			</p>
-		)
-	if (!subject?.comment?.length)
-		return (
-			<p className='text-center text-gray-500 mt-4'>Комментариев пока нет</p>
+			<div className={`min-h-screen flex items-center justify-center ${darkMode ? "bg-gray-900" : "bg-gradient-to-br from-blue-50 via-white to-violet-50"}`}>
+				<p className={`text-center ${darkMode ? "text-red-300" : "text-red-500"} mt-4`}>
+					Ошибка при загрузке комментариев
+				</p>
+			</div>
 		)
 
 	const formatDate = () => {
@@ -57,44 +62,54 @@ const Comment = () => {
 	}
 
 	return (
-		<div className='space-y-6'>
-			{subject.comment.map((com, idx) => (
-				<div
-					key={idx}
-					className='flex items-start gap-4 bg-gray-50 p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200'
-				>
-					<Image
-						src={userImg}
-						alt='user'
-						width={50}
-						height={50}
-						className='rounded-full border border-gray-200 dark:border-gray-700'
-					/>
-					<div className='flex-1'>
-						<div className='flex items-center gap-2 text-sm text-gray-500'>
-							<span className='font-semibold text-gray-800'>User</span>
-							<span>· {formatDate()}</span>
+		<div className={`min-h-screen p-8 ${darkMode ? "bg-gray-900 text-gray-100" : "bg-gradient-to-br from-blue-50 via-white to-violet-50"}`}>
+			{!subject?.comment?.length ? (
+				<p className={`text-center ${darkMode ? "text-gray-400" : "text-gray-500"} mt-4`}>Комментариев пока нет</p>
+			) : (
+				<div className='space-y-6 max-w-4xl mx-auto'>
+					{subject.comment.map((com, idx) => (
+						<div
+							key={idx}
+							className={`flex items-start gap-4 p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-gray-50 border-gray-200"}`}
+						>
+							<Image
+								src={userImg}
+								alt='user'
+								width={50}
+								height={50}
+								className={`rounded-full border ${darkMode ? "border-gray-600" : "border-gray-200"}`}
+							/>
+							<div className='flex-1'>
+								<div className='flex items-center gap-2 text-sm'>
+									<span className={`font-semibold ${darkMode ? "text-gray-200" : "text-gray-800"}`}>User</span>
+									<span className={darkMode ? "text-gray-400" : "text-gray-500"}>· {formatDate()}</span>
+								</div>
+								<p className={`mt-1 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>{com}</p>
+							</div>
 						</div>
-						<p className='text-gray-700 mt-1'>{com}</p>
-					</div>
+					))}
 				</div>
-			))}
+			)}
 
-			<div className='flex gap-2 mt-4'>
+			<div className='flex gap-2 mt-8 max-w-4xl mx-auto'>
 				<input
 					type='text'
 					placeholder='Написать комментарий...'
 					value={inpAddComent}
 					onChange={e => setInpAddComent(e.target.value)}
-					className='flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400'
+					className={`flex-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 ${darkMode ? "bg-gray-700 border-gray-600 text-white placeholder-gray-400" : "bg-white border-gray-300 text-gray-800"}`}
 				/>
 				<button
-					className='bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200'
+					className={`px-4 py-2 rounded-lg transition-colors duration-200 ${darkMode ? "bg-blue-600 hover:bg-blue-700" : "bg-blue-500 hover:bg-blue-600"} text-white`}
 					onClick={addUserComent}
+					disabled={!inpAddComent.trim()}
 				>
 					Отправить
 				</button>
 			</div>
+
+			<div className={`absolute top-20 left-10 w-32 h-32 rounded-full opacity-20 blur-3xl animate-pulse ${darkMode ? "bg-blue-900" : "bg-blue-200"}`}></div>
+			<div className={`absolute bottom-20 right-10 w-40 h-40 rounded-full opacity-20 blur-3xl animate-pulse delay-1000 ${darkMode ? "bg-violet-900" : "bg-violet-200"}`}></div>
 		</div>
 	)
 }
