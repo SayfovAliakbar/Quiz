@@ -1,44 +1,124 @@
+'use client'
 import React from 'react'
 import Link from 'next/link'
-import logo from "../../shared/Без названия (2).jpg"
+import logo from '../../shared/Без названия (2).jpg'
 import Image from 'next/image'
+import { useTheme } from '../theme'
+import { Moon, Sun, Home, User, Mail } from 'lucide-react'
 
 const Header = () => {
-	return (
-		<header className="bg-white shadow-md sticky top-0 z-50">
-			<div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-				<Image src={logo} alt='logo' height={30} width={100}/>
-				<nav>
-					<ul className="flex space-x-8">
-						<li>
-							<Link
-								href="/"
-								className="text-gray-800 hover:text-indigo-700 transition font-medium"
-							>
-								<b>Home</b>
-							</Link>
-						</li>
-						<li>
-							<Link
-								href="/pages/about"
-								className="text-gray-800 hover:text-indigo-700 transition font-medium"
-							>
-								<b>About</b>
-							</Link>
-						</li>
-						<li>
-							<Link
-								href="/pages/contact"
-								className="text-gray-800 hover:text-indigo-700 transition font-medium"
-							>
-								<b>Contact</b>
-							</Link>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</header>
-	)
+  let { darkMode, toggleTheme } = useTheme()
+  
+  return (
+    <header className={`sticky top-0 z-50 backdrop-blur-md transition-all duration-300 ${
+      darkMode 
+        ? 'bg-gray-900/80 border-b border-gray-700' 
+        : 'bg-white/80 border-b border-gray-200 shadow-sm'
+    }`}>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3'>
+        <div className='flex items-center justify-between'>
+          {/* Логотип */}
+          <Link href='/' className='flex items-center space-x-2 group'>
+            <Image 
+              src={logo} 
+              alt='logo' 
+              height={40} 
+              width={120}
+              className='transition-transform duration-300 group-hover:scale-105'
+            />
+          </Link>
+
+          {/* Навигация */}
+          <nav className='hidden md:flex items-center space-x-6'>
+            <Link
+              href='/'
+              className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all duration-300 font-medium ${
+                darkMode
+                  ? 'text-gray-300 hover:text-white hover:bg-gray-800'
+                  : 'text-gray-700 hover:text-indigo-600 hover:bg-indigo-50'
+              }`}
+            >
+              <Home className='w-4 h-4' />
+              <span>Home</span>
+            </Link>
+            
+            <Link
+              href='/pages/about'
+              className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all duration-300 font-medium ${
+                darkMode
+                  ? 'text-gray-300 hover:text-white hover:bg-gray-800'
+                  : 'text-gray-700 hover:text-indigo-600 hover:bg-indigo-50'
+              }`}
+            >
+              <User className='w-4 h-4' />
+              <span>About</span>
+            </Link>
+            
+            <Link
+              href='/pages/contact'
+              className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all duration-300 font-medium ${
+                darkMode
+                  ? 'text-gray-300 hover:text-white hover:bg-gray-800'
+                  : 'text-gray-700 hover:text-indigo-600 hover:bg-indigo-50'
+              }`}
+            >
+              <Mail className='w-4 h-4' />
+              <span>Contact</span>
+            </Link>
+
+            {/* Кнопка переключения темы */}
+            <button
+              onClick={toggleTheme}
+              className={`p-2 rounded-lg transition-all duration-300 hover:scale-110 ${
+                darkMode
+                  ? 'bg-gray-800 text-amber-400 hover:bg-gray-700'
+                  : 'bg-indigo-100 text-indigo-600 hover:bg-indigo-200'
+              }`}
+              aria-label={
+                darkMode
+                  ? 'Переключить на светлую тему'
+                  : 'Переключить на тёмную тему'
+              }
+            >
+              {darkMode ? (
+                <Sun className='w-5 h-5' />
+              ) : (
+                <Moon className='w-5 h-5' />
+              )}
+            </button>
+          </nav>
+
+          {/* Мобильное меню */}
+          <div className='flex md:hidden items-center space-x-4'>
+            <button
+              onClick={toggleTheme}
+              className={`p-2 rounded-lg transition-all duration-300 ${
+                darkMode
+                  ? 'bg-gray-800 text-amber-400'
+                  : 'bg-indigo-100 text-indigo-600'
+              }`}
+            >
+              {darkMode ? (
+                <Sun className='w-5 h-5' />
+              ) : (
+                <Moon className='w-5 h-5' />
+              )}
+            </button>
+            
+            <button className={`p-2 rounded-lg ${
+              darkMode 
+                ? 'bg-gray-800 text-gray-300' 
+                : 'bg-gray-100 text-gray-700'
+            }`}>
+              <svg className='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 6h16M4 12h16M4 18h16' />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+  )
 }
 
 export default Header
