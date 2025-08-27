@@ -2,6 +2,7 @@
 import React from "react"
 import { useTheme } from '../theme'
 import { Heart, Mail, Github, Twitter, Home, User } from 'lucide-react'
+import Link from 'next/link'
 
 const Footer = () => {
   const { darkMode } = useTheme()
@@ -30,8 +31,8 @@ const Footer = () => {
           <nav aria-label="Footer Navigation">
             <ul className="flex flex-wrap justify-center gap-6">
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/"
                   className={`flex items-center gap-2 transition-colors hover:scale-105 ${
                     darkMode 
                       ? 'text-gray-300 hover:text-white' 
@@ -40,11 +41,11 @@ const Footer = () => {
                 >
                   <Home className="w-4 h-4" />
                   <span>Home</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/pages/about"
                   className={`flex items-center gap-2 transition-colors hover:scale-105 ${
                     darkMode 
                       ? 'text-gray-300 hover:text-white' 
@@ -53,11 +54,11 @@ const Footer = () => {
                 >
                   <User className="w-4 h-4" />
                   <span>About</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/pages/contact"
                   className={`flex items-center gap-2 transition-colors hover:scale-105 ${
                     darkMode 
                       ? 'text-gray-300 hover:text-white' 
@@ -66,17 +67,16 @@ const Footer = () => {
                 >
                   <Mail className="w-4 h-4" />
                   <span>Contact</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
         </div>
 
-        {/* Социальные сети */}
         <div className="flex justify-center mb-6">
           <div className="flex gap-4">
-            <a
-              href="#"
+            <Link
+              href="https://github.com/SayfovAliakbar"
               className={`p-2 rounded-full transition-all duration-300 hover:scale-110 ${
                 darkMode
                   ? 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white'
@@ -85,9 +85,9 @@ const Footer = () => {
               aria-label="GitHub"
             >
               <Github className="w-5 h-5" />
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="https://www.instagram.com/frontdev2009/"
               className={`p-2 rounded-full transition-all duration-300 hover:scale-110 ${
                 darkMode
                   ? 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white'
@@ -96,9 +96,9 @@ const Footer = () => {
               aria-label="Twitter"
             >
               <Twitter className="w-5 h-5" />
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/pages/contact"
               className={`p-2 rounded-full transition-all duration-300 hover:scale-110 ${
                 darkMode
                   ? 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white'
@@ -107,7 +107,7 @@ const Footer = () => {
               aria-label="Email"
             >
               <Mail className="w-5 h-5" />
-            </a>
+            </Link>
           </div>
         </div>
 
