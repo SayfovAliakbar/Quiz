@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import logo from '../../shared/Без названия (2).jpg'
+import logo from '../../shared/quizLogo.jpg'
 import Image from 'next/image'
 import { useTheme } from '../theme'
 import { Moon, Sun, Home, User, Mail, Heart } from 'lucide-react'
@@ -25,7 +25,7 @@ const Header = () => {
 							alt='logo'
 							height={40}
 							width={120}
-							className='transition-transform duration-300 group-hover:scale-105'
+							className='transition-transform duration-300 group-hover:scale-105 rounded-[15px]'
 						/>
 					</Link>
 
