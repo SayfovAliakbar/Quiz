@@ -19,7 +19,7 @@ const Footer = () => {
             <div className={`text-2xl font-bold mb-2 ${
               darkMode ? 'text-white' : 'text-gray-800'
             }`}>
-              MyWebsite
+              Quiz Time
             </div>
             <p className={`max-w-md text-sm ${
               darkMode ? 'text-gray-400' : 'text-gray-500'
@@ -111,12 +111,11 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Копирайт */}
         <div className={`text-center border-t pt-6 ${
           darkMode ? 'border-gray-700' : 'border-gray-200'
         }`}>
           <div className="flex items-center justify-center gap-2 text-sm">
-            <span>© {new Date().getFullYear()} MyWebsite</span>
+            <span>© {new Date().getFullYear()} Quiz Time</span>
             <span className="text-gray-400">•</span>
             <span className="flex items-center gap-1">
               Сделано с <Heart className="w-4 h-4 fill-red-500 text-red-500" /> 
