@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import logo from '../../shared/quizLogo.jpg'
+import logo from '../../shared/b67677c8-246d-4724-9152-b03628db7c96.png'
 import Image from 'next/image'
 import { useTheme } from '../theme'
 import { Moon, Sun, Home, User, Mail, Heart } from 'lucide-react'
