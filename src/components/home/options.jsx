@@ -1,14 +1,15 @@
 'use client'
 import { useGetOptionsQuery } from '@/store/services/userApi'
 import Link from 'next/link'
-import { MessageCircle, Moon, Star, Sun } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
+import { MessageCircle, Star } from 'lucide-react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useTheme } from '../theme'
 
 const Options = () => {
 	let { data, isLoading, isError } = useGetOptionsQuery()
 	let { darkMode } = useTheme()
 	const [likedSubjects, setLikedSubjects] = useState([])
+	const cardsRef = useRef([])
 
 	useEffect(() => {
 		const saved = JSON.parse(localStorage.getItem('likedSubject')) || []
@@ -24,6 +25,22 @@ const Options = () => {
 			setLikedSubjects([...likedSubjects, el])
 		}
 	}
+
+	useEffect(() => {
+		if (data && data.length > 0) {
+			const timer = setTimeout(() => {
+				cardsRef.current.forEach((card, index) => {
+					if (card) {
+						card.style.opacity = '1'
+						card.style.transform = 'translateY(0) scale(1)'
+						card.style.transition = `all 0.8s ease-out ${index * 0.2}s`
+					}
+				})
+			}, 100)
+
+			return () => clearTimeout(timer)
+		}
+	}, [data])
 
 	if (isLoading)
 		return (
@@ -49,7 +66,7 @@ const Options = () => {
 
 	return (
 		<main
-			className={`min-h-screen p-8 ${
+			className={`min-h-screen p-8 relative ${
 				darkMode
 					? 'bg-gray-900 text-gray-100'
 					: 'bg-gradient-to-br from-blue-50 via-white to-violet-50'
@@ -60,10 +77,12 @@ const Options = () => {
 			</h1>
 
 			<section className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto'>
-				{data?.map(el => (
+				{data?.map((el, idx) => (
 					<div
 						key={el.id}
-						className={`shadow-xl hover:shadow-2xl rounded-3xl p-8 text-center transition-all duration-300 hover:scale-[1.02] border border-gray-200  group ${
+						ref={el => (cardsRef.current[idx] = el)}
+						style={{ opacity: 0, transform: 'translateY(50px) scale(0.95)' }}
+						className={`shadow-xl hover:shadow-2xl rounded-3xl p-8 text-center transition-all duration-300 hover:scale-[1.02] border group ${
 							darkMode
 								? 'bg-gray-800 border-gray-600 text-gray-100'
 								: 'bg-white border-gray-200 text-gray-800'
@@ -106,9 +125,6 @@ const Options = () => {
 					</div>
 				))}
 			</section>
-
-			<div className='absolute top-20 left-10 w-32 h-32 bg-blue-200 dark:bg-blue-900 rounded-full opacity-20 blur-3xl animate-pulse'></div>
-			<div className='absolute bottom-20 right-10 w-40 h-40 bg-violet-200 dark:bg-violet-900 rounded-full opacity-20 blur-3xl animate-pulse delay-1000'></div>
 		</main>
 	)
 }
