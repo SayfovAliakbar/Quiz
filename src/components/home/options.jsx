@@ -6,7 +6,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { useTheme } from '../theme'
 
 const Options = () => {
-	let { data, isLoading, isError } = useGetOptionsQuery()
+	let { data, isLoading } = useGetOptionsQuery()
 	let { darkMode } = useTheme()
 	const [likedSubjects, setLikedSubjects] = useState([])
 	const cardsRef = useRef([])
@@ -51,15 +51,6 @@ const Options = () => {
 				</h2>
 				<p className='text-gray-600 dark:text-gray-400 mt-2 text-sm'>
 					✨ Скоро начнём викторину ✨
-				</p>
-			</div>
-		)
-
-	if (isError)
-		return (
-			<div className='min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-violet-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900'>
-				<p className='text-center text-red-500 dark:text-red-300 text-lg font-medium'>
-					Ошибка при загрузке
 				</p>
 			</div>
 		)
