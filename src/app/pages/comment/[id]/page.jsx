@@ -176,18 +176,6 @@ const Comment = () => {
           Отправить
         </button>
       </div>
-
-      {/* декоративные круги */}
-      <div
-        className={`absolute top-20 left-10 w-32 h-32 rounded-full opacity-20 blur-3xl animate-pulse ${
-          darkMode ? 'bg-blue-900' : 'bg-blue-200'
-        }`}
-      />
-      <div
-        className={`absolute bottom-20 right-10 w-40 h-40 rounded-full opacity-20 blur-3xl animate-pulse delay-1000 ${
-          darkMode ? 'bg-violet-900' : 'bg-violet-200'
-        }`}
-      />
     </div>
   )
 }
