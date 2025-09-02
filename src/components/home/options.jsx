@@ -40,12 +40,8 @@ const Options = () => {
   return (
     <main className={`min-h-screen p-4 md:p-8 relative transition-colors duration-300 ${darkMode ? 'bg-slate-900 text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
       
-      {/* Заголовок страницы */}
       <div className="max-w-6xl mx-auto mb-10">
         <h1 className="text-3xl md:text-4xl font-bold text-center mb-4">Доступные предметы</h1>
-        <p className="text-center text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-          Изучайте материалы, отвечайте на вопросы и делитесь мнением с другими студентами
-        </p>
       </div>
 
       <section className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
