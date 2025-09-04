@@ -67,7 +67,7 @@ const Header = () => {
 						</Link>
 
 						<Link
-              href={'/pages/like'}
+							href={'/pages/like'}
 							className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all duration-300 font-medium ${
 								darkMode
 									? 'text-gray-300 hover:text-white hover:bg-gray-800'
@@ -75,7 +75,18 @@ const Header = () => {
 							}`}
 						>
 							<Heart />
-              <span>Избранные</span>
+							<span>Избранные</span>
+						</Link>
+
+						<Link
+							href={'/pages/signUp'}
+							className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all duration-300 font-medium ${
+								darkMode
+									? 'text-gray-300 hover:text-white hover:bg-gray-800'
+									: 'text-gray-700 hover:text-indigo-600 hover:bg-indigo-50'
+							}`}
+						>
+							<span>Sign Up</span>
 						</Link>
 
 						<button
