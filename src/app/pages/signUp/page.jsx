@@ -9,7 +9,6 @@ import React, { useState } from 'react'
 
 const SignUp = () => {
   let { data: userInfo } = useGetUserInfoQuery()
-  console.log(userInfo)
 
   const { darkMode } = useTheme()
   let [addUserInfo] = useAddUserInfoMutation()
