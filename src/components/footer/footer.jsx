@@ -1,7 +1,7 @@
 "use client"
 import React from "react"
 import { useTheme } from '../theme'
-import { Heart, Mail, Github, Twitter, Home, User } from 'lucide-react'
+import { Heart, Mail, Github, Home, User, Instagram } from 'lucide-react'
 import Link from 'next/link'
 
 const Footer = () => {
@@ -95,10 +95,10 @@ const Footer = () => {
               }`}
               aria-label="Twitter"
             >
-              <Twitter className="w-5 h-5" />
+              <Instagram className="w-5 h-5" />
             </Link>
             <Link
-              href="/pages/contact"
+              href="https://t.me/Vjxing"
               className={`p-2 rounded-full transition-all duration-300 hover:scale-110 ${
                 darkMode
                   ? 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white'
