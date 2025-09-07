@@ -6,13 +6,6 @@
       "password": "1451",
       "repeatePassword": "1451",
       "status": "senior"
-    },
-    {
-      "id": "1756985401002",
-      "userName": "iqbol",
-      "password": "5454",
-      "repeatePassword": "5454",
-      "status": "bot"
     }
   ],
   "data": [
@@ -2734,7 +2727,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "d90a"
     }
   ]
 }

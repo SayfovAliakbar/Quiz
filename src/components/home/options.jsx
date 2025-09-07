@@ -1,5 +1,5 @@
 'use client'
-import { useGetOptionsQuery } from '@/store/services/userApi'
+import { useGetOptionsQuery, useGetUserInfoQuery } from '@/store/services/userApi'
 import Link from 'next/link'
 import { MessageCircle, Star, BookOpen, ChevronRight, Loader } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
@@ -10,6 +10,8 @@ const Options = () => {
   const { darkMode } = useTheme()
 
   const [likedSubjects, setLikedSubjects] = useState([])
+  let { data: userInfo } = useGetUserInfoQuery()
+  let userInLocal = localStorage.getItem("user")
 
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem('likedSubject')) || []
@@ -76,7 +78,7 @@ const Options = () => {
                       </div>
                       
                       <button 
-                        onClick={() => toggleLiked(q)}
+                        onClick={() => userInLocal ? toggleLiked(q) : alert("Ты не зарегистрирован")}
                         className={`p-1.5 rounded-full transition-colors ${isLiked 
                           ? 'bg-amber-100 text-amber-500 dark:bg-amber-500/20 dark:text-amber-400' 
                           : 'bg-slate-100 text-slate-400 hover:text-amber-500 dark:bg-slate-600 dark:text-slate-400 dark:hover:text-amber-400'}`}

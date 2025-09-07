@@ -4,6 +4,7 @@ import {
   useAddUserInfoMutation,
   useGetUserInfoQuery,
 } from '@/store/services/userApi'
+import Link from 'next/link'
 import React, { useState } from 'react'
 
 const SignUp = () => {
@@ -29,11 +30,12 @@ const SignUp = () => {
       repeatePassword,
       status: role,
     }
+    localStorage.setItem("user", JSON.stringify(updatedUser))
 
-    if (password === repeatePassword) {
+    if (password === repeatePassword && name !== "") {
       await addUserInfo(updatedUser)
     } else {
-      alert('Пароли не совпадают!!!')
+      alert('Произошла ошибка. Проверьте свои данные')
     }
   }
 
@@ -81,6 +83,8 @@ const SignUp = () => {
                 : 'bg-white border-gray-300 text-gray-900 focus:ring-blue-400'
             }`}
           />
+
+          <Link href={'/pages/logIn'}>log in</Link>
 
           <button
             onClick={handleSignUp}
