@@ -15,7 +15,6 @@ const Info = () => {
 
   useEffect(() => {
     if (data) {
-      // ищем предмет внутри typeQuestion
       const allSubjects = data[0]?.types?.flatMap(t => t.typeQuestion) || []
       const found = allSubjects.find(s => s.id === id)
       setSubject(found || null)

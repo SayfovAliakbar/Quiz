@@ -5,14 +5,20 @@
 			"userName": "Aliakbar",
 			"password": "1451",
 			"repeatePassword": "1451",
-			"status": "senior"
-		},
-		{
-			"id": "1757242843753",
-			"userName": "lalala",
-			"password": "lala44",
-			"repeatePassword": "lala44",
-			"status": "bot"
+			"status": "senior",
+			"task": [
+				{
+					"taskMadeId": "1",
+					"taskMadeName": "",
+					"taskResult": [
+						{
+							"taskMaxMadeId": "",
+							"taskMaxMadeResult": "",
+							"taskMaxMadeName": ""
+						}
+					]
+				}
+			]
 		}
 	],
 	"data": [

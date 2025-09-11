@@ -4,7 +4,7 @@ import Link from 'next/link'
 import logo from '../../shared/b67677c8-246d-4724-9152-b03628db7c96.png'
 import Image from 'next/image'
 import { useTheme } from '../theme'
-import { Moon, Sun, Home, User, Mail, Heart } from 'lucide-react'
+import { Moon, Sun, Home, User, Mail, Heart, UserRoundCog } from 'lucide-react'
 
 const Header = () => {
 	let { darkMode, toggleTheme } = useTheme()
@@ -87,6 +87,18 @@ const Header = () => {
 							}`}
 						>
 							<span>Sign Up</span>
+						</Link>
+
+						<Link
+							href={'/pages/proffile'}
+							className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all duration-300 font-medium ${
+								darkMode
+									? 'text-gray-300 hover:text-white hover:bg-gray-800'
+									: 'text-gray-700 hover:text-indigo-600 hover:bg-indigo-50'
+							}`}
+						>
+							<UserRoundCog />
+							<span>Proffile</span>
 						</Link>
 
 						<button

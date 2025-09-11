@@ -6,7 +6,6 @@ import React, { useState } from 'react'
 const LogIn = () => {
 	let { darkMode } = useTheme()
 	let { data: userInfo } = useGetUserInfoQuery()
-	console.log(userInfo)
 	let [logName, setLogName] = useState('')
 	let [logPassword, setLogPassword] = useState('')
 
