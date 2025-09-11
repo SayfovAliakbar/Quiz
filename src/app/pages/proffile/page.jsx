@@ -7,11 +7,8 @@ const Proffile = () => {
   const { darkMode } = useTheme()
   const userProfile = JSON.parse(localStorage.getItem("user"))  
 
-  const { data: users, isLoading, error } = useGetUserInfoQuery()
+  const { data: users } = useGetUserInfoQuery()
   const user = users?.find(e => e.id == userProfile?.id)
-
-  if (isLoading) return <div className="text-center mt-10">⏳ Loading...</div>
-  if (error) return <div className="text-center mt-10 text-red-500">❌ Error loading user info</div>
 
   return (
     <div
