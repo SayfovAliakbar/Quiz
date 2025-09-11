@@ -10,13 +10,7 @@
 				{
 					"taskMadeId": "1",
 					"taskMadeName": "",
-					"taskResult": [
-						{
-							"taskMaxMadeId": "",
-							"taskMaxMadeResult": "",
-							"taskMaxMadeName": ""
-						}
-					]
+					"taskMaxMadeResult": ""
 				}
 			]
 		}

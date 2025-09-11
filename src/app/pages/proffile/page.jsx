@@ -5,8 +5,7 @@ import React from 'react'
 
 const Proffile = () => {
   const { darkMode } = useTheme()
-  let userProfile = null
-  userProfile = JSON.parse(localStorage.getItem("user"))  
+  const userProfile = JSON.parse(localStorage.getItem("user"))  
 
   const { data: users, isLoading, error } = useGetUserInfoQuery()
   const user = users?.find(e => e.id == userProfile?.id)
@@ -25,7 +24,6 @@ const Proffile = () => {
           darkMode ? "bg-gray-800 text-gray-100" : "bg-white text-gray-900"
         }`}
       >
-        {/* Обложка */}
         <div
           className={`h-32 ${
             darkMode
@@ -34,14 +32,13 @@ const Proffile = () => {
           }`}
         ></div>
 
-        {/* Аватар + Имя */}
         <div className="flex flex-col items-center -mt-12">
           <div
             className={`w-24 h-24 rounded-full border-4 flex items-center justify-center text-white text-3xl font-bold shadow-md ${
               darkMode ? "bg-purple-600 border-gray-800" : "bg-blue-400 border-white"
             }`}
           >
-            {user?.userName?.[0] || "U"}
+            {user?.userName?.[0]}
           </div>
           <h2 className="mt-3 text-2xl font-semibold">{user?.userName}</h2>
           <span
@@ -59,10 +56,11 @@ const Proffile = () => {
           </span>
         </div>
 
-        {/* Основная информация */}
-        <div className={`p-6 grid grid-cols-2 gap-4 border-t mt-6 ${
-          darkMode ? "border-gray-700" : "border-gray-200"
-        }`}>
+        <div
+          className={`p-6 grid grid-cols-2 gap-4 border-t mt-6 ${
+            darkMode ? "border-gray-700" : "border-gray-200"
+          }`}
+        >
           <div>
             <p className="text-gray-500 text-sm">ID</p>
             <p className="font-medium">{user?.id}</p>
@@ -73,10 +71,11 @@ const Proffile = () => {
           </div>
         </div>
 
-        {/* Задачи */}
-        <div className={`p-6 border-t ${
-          darkMode ? "border-gray-700" : "border-gray-200"
-        }`}>
+        <div
+          className={`p-6 border-t ${
+            darkMode ? "border-gray-700" : "border-gray-200"
+          }`}
+        >
           <h3 className="text-lg font-semibold mb-3">Tasks</h3>
           {user?.task?.length ? (
             <div className="space-y-4">
@@ -87,21 +86,14 @@ const Proffile = () => {
                     darkMode ? "bg-gray-700" : "bg-gray-50"
                   }`}
                 >
-                  <p><span className="font-medium">Task ID:</span> {task.taskMadeId}</p>
-                  <p><span className="font-medium">Task Name:</span> {task.taskMadeName || <i>No name</i>}</p>
-
-                  {task.taskResult?.map((res, i) => (
-                    <div
-                      key={i}
-                      className={`mt-3 p-3 rounded-lg border shadow-sm transition-colors ${
-                        darkMode ? "bg-gray-800 border-gray-600" : "bg-white border-gray-200"
-                      }`}
-                    >
-                      <p><span className="font-medium">Result ID:</span> {res.taskMaxMadeId || "-"}</p>
-                      <p><span className="font-medium">Result Name:</span> {res.taskMaxMadeName || "-"}</p>
-                      <p><span className="font-medium">Result:</span> {res.taskMaxMadeResult || "-"}</p>
-                    </div>
-                  ))}
+                  <p>
+                    <span className="font-medium">Task Name:</span>{" "}
+                    {task.taskMadeName || <i>No name</i>}
+                  </p>
+                  <p>
+                    <span className="font-medium">Result:</span>{" "}
+                    {task.taskMaxMadeResult || <i>No result</i>}
+                  </p>
                 </div>
               ))}
             </div>
